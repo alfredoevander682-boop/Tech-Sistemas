@@ -21,17 +21,19 @@ com integração directa ao WhatsApp.
 - **CSS3** — design system próprio (variáveis CSS, flexbox, grid, animações)
 - **JavaScript (vanilla)** — menu mobile, animações de scroll, contadores animados
 - **SVG** — logo e ícones desenhados à medida
-- **Google Fonts** — Sora (títulos) e Inter (texto)
+- **Google Fonts** — Space Grotesk (títulos) e Inter (texto)
+- **Identidade** — preto + verde neon `#00E58C`, a partir do logótipo do Instagram
 
 ## Estrutura
 
 ```
 tech-sistemas/
 ├── index.html          # Página única com todas as secções
+├── ChatGPT Image 21_09_2026, 23_02_02.png  # Logótipo / foto de perfil (usado na secção Confiança + og:image)
 └── assets/
     ├── styles.css      # Folha de estilos
     ├── script.js       # Interacções
-    └── favicon.svg     # Logo / ícone do site
+    └── favicon.svg     # Logo TS (T branco + S neon) — o que aparece na aba do navegador
 ```
 
 ## Secções do site
@@ -41,7 +43,7 @@ tech-sistemas/
 3. **Serviços** — Sistemas Empresariais, Sites, Soluções à Medida, Análise & Consultoria
 4. **Processo** — método de trabalho em 4 passos
 5. **Sobre nós** — história e princípios da empresa
-6. **Contacto** — canal directo via WhatsApp (+244 931 505 796)
+6. **Contacto** — canal directo via WhatsApp (+244 951 428 009)
 7. **Botão flutuante do WhatsApp** em todas as páginas
 
 ## Como executar localmente
@@ -79,13 +81,16 @@ O mesmo projecto pode ser publicado em qualquer outra plataforma estática
 
 | O quê                      | Onde                                             |
 |----------------------------|--------------------------------------------------|
-| Número do WhatsApp         | Pesquisar `wa.me/244931505796` em `index.html`   |
+| Número do WhatsApp         | Pesquisar `wa.me/244951428009` em `index.html`   |
 | Cores da marca             | Variáveis no topo de `assets/styles.css`         |
 | Textos e secções           | `index.html`                                     |
 | Animações e comportamentos | `assets/script.js`                               |
-| Logo                       | `assets/favicon.svg`                             |
+| Logo / foto de perfil   | `ChatGPT Image 21_09_2026, 23_02_02.png` (secção Confiança) |
 
 ## Licença
 
 © Tech — Sistemas. Todos os direitos reservados.
 Este código é proprietário e destina-se exclusivamente ao uso da empresa.
+
+
+

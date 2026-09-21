@@ -1,21 +1,18 @@
-// Tech — Sistemas | Interações
+// Tech Systems — interações (estático, sem backend)
 (function () {
   "use strict";
-
-  // Ano dinâmico no rodapé
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Sombra no header ao fazer scroll
   var header = document.querySelector(".site-header");
   function onScroll() {
+    if (!header) return;
     if (window.scrollY > 8) header.classList.add("scrolled");
     else header.classList.remove("scrolled");
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Menu mobile
   var toggle = document.getElementById("navToggle");
   var nav = document.getElementById("mainNav");
   if (toggle && nav) {
@@ -31,46 +28,37 @@
     });
   }
 
-  // Animação de entrada (IntersectionObserver)
-  var revealEls = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          io.unobserve(entry.target);
+  // Simulador de pesquisa do hero — efeito máquina de escrever
+  var queries = ["barbershop near me", "barbearia Alfama", "loja aberta agora", "clínica dentária Gaia"];
+  var target = document.getElementById("typedQuery");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (target && !reduceMotion) {
+    var qi = 0, ci = 0, deleting = false;
+    function tick() {
+      var word = queries[qi];
+      if (!deleting) {
+        ci++;
+        target.textContent = word.slice(0, ci);
+        if (ci >= word.length) {
+          deleting = true;
+          setTimeout(tick, 1600);
+          return;
         }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add("visible"); });
-  }
-
-  // Contadores animados na secção de estatísticas
-  var counters = document.querySelectorAll(".counter");
-  function animateCounter(el) {
-    var target = parseInt(el.getAttribute("data-target"), 10);
-    var duration = 1400;
-    var start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased);
-      if (p < 1) requestAnimationFrame(step);
+        setTimeout(tick, 55);
+      } else {
+        ci--;
+        target.textContent = word.slice(0, ci);
+        if (ci <= 0) {
+          deleting = false;
+          qi = (qi + 1) % queries.length;
+          setTimeout(tick, 350);
+          return;
+        }
+        setTimeout(tick, 28);
+      }
     }
-    requestAnimationFrame(step);
-  }
-  if ("IntersectionObserver" in window && counters.length) {
-    var cio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          cio.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    counters.forEach(function (el) { cio.observe(el); });
+    tick();
+  } else if (target) {
+    target.textContent = queries[1];
   }
 })();
